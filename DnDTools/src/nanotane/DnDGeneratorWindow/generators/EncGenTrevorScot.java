@@ -40,7 +40,7 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 		} else if(active.equals("[Working Class]")) {
 			person = sWorkingClass.get(rand.nextInt(sProfessional.size()));
 		}
-		return sPeople.get(people) + " " + sActivities.get(activity);
+		return "Random People: " + sPeople.get(people) + " " + sActivities.get(activity);
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 		int ambush = rand.nextInt(sAmbush.size());
 		int ruse = rand.nextInt(sRuse.size());
 		int strategy = rand.nextInt(sStrategy.size());
-		return sAmbush.get(ambush) + " " + sRuse.get(ruse) + " " + sStrategy.get(strategy);
+		return "Ambush! " + sAmbush.get(ambush) + " " + sRuse.get(ruse) + " " + sStrategy.get(strategy);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 	private String genDangerousAnimal(){
 		Random rand = new Random();
 		int animal = rand.nextInt(sAnimal.size());
-		return sAnimal.get(animal);
+		return "Escaped Animal! " + sAnimal.get(animal);
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 	private String genHazard(){
 		Random rand = new Random();
 		int hazard = rand.nextInt(sHazards.size());
-		return sHazards.get(hazard);
+		return "Hazard: " + sHazards.get(hazard);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 	private String genOfValue(){
 		Random rand = new Random();
 		int value = rand.nextInt(sLoot.size());
-		return sLoot.get(value);
+		return "Random Loot: " + sLoot.get(value);
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 	private String genBenign(){
 		Random rand = new Random();
 		int benign = rand.nextInt(sBenign.size());
-		return sBenign.get(benign);
+		return "Benign Event: " + sBenign.get(benign);
 	}
 	
 	private boolean isBetween(int toCheck, int pLow, int pHigh) {
