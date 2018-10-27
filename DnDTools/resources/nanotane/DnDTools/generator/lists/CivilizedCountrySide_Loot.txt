@@ -4,9 +4,7 @@ Clue/Pointer
 Coin purse
 Dead people
 Natural Resource
-Dead Poisonous
-Animal
+Dead Poisonous Animal
 Dungeon
-Exactly what is
-needed
+Exactly what is needed
 Fancy Loot
