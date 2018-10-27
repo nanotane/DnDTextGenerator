@@ -1,0 +1,51 @@
+[Professional]
+[Working Class]
+1d4 Bandit(s)
+1d4 Cattle rustler(s)
+1d4 City Guardsmen
+1d4 Farmer(s)
+1d4 Fishermen
+1d4 Herdsmen
+1d4 Highwaymen
+1d4 Horse Thieve(s)
+1d4 Laborer(s)
+1d4 Marine(s)
+1d4 Mercenary(ies)
+1d4 Outlaw(s)
+1d4 Pirate(s)
+1d4 Prospector(s)
+1d4 Refugee(s)
+1d4 Religious Pilgrim(s)
+1d4 Slave(s) on an Errand
+1d4 Thug(s)
+1d4 Traveler(s)
+1d4 Wealthy Citizen(s) in Carriage with 1d4 Guard(s)
+1d4+1 Adventurers
+1d6 Gypsy(ies)
+A Prisoner Wagon with 1d4 Prisoners and 1d4+1 Guards
+A Young Couple
+Apprentice on Errand
+Artist
+Bounty Hunter
+Craftsman with Wares
+Family
+Foreign Merchant and 1d4 Guard(s)
+Fugitive
+Healer and wagon
+Horse merchant
+Hunter
+Master Duelist
+Master Thief
+Merchant with Cart and 1d4+1 Guards
+Messenger
+Military Patrol: 1d4+2 Strong
+Noble and 1d4 Friends
+Outcast
+Resting Traveler
+Royalty and 1d10+3
+Guards
+Sniper
+Spy
+Thief
+Tinker
+Toll Collector

@@ -1,0 +1,20 @@
+Accountant
+Apothecary
+Arbiter
+Architect
+Catrographer
+City Official
+Courtesan
+Diplomat
+Doctor
+Engineer
+Lawyer
+Merchant
+Military Officer
+Scholar
+Scientist
+Tavernkeeper
+Vintner
+Clergyman
+Duelist
+Moneylender
