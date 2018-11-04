@@ -3,16 +3,18 @@ package nanotane.DnDGeneratorWindow.generators;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class EncGenTrevorScot implements IEncounterGenerator{
+import nanotane.DnDGeneratorWindow.TrevorScot.TrevoScotLists;
+
+public class EncGenTrevorScot {
 	
-	@Override
-	public String gererateString() {
+	public String generateCivilizedCountrySide()
+	{
 		int randomNum = (int)(Math.random() * 100);
 		String toReturn = "";
 		if(isBetween(randomNum, 0, 35)){
 			toReturn = genPeopleActivity();
 		} else if(isBetween(randomNum, 31, 35)){
-			toReturn = genAmbush();
+			toReturn = genAmbush(TrevoScotLists.CIV_COUNTRYSIDE_AMBUSH, TrevoScotLists.CIV_COUNTRYSIDE_RUSE, TrevoScotLists.AMBUSH_STRATEGY);
 		} else if(isBetween(randomNum, 36, 45)){
 			toReturn = genDangerousAnimal();
 		} else if(isBetween(randomNum, 46, 55)){
@@ -20,7 +22,27 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 		} else if(isBetween(randomNum, 56, 65)){
 			toReturn = genOfValue();
 		} else if(isBetween(randomNum, 66, 100)){
-			toReturn = genBenign();
+			toReturn = genBenign(TrevoScotLists.CIV_COUNTRYSIDE_BENIGN);
+		}
+		return toReturn;
+	}
+	
+	public String generateUrbanString()
+	{
+		int randomNum = (int)(Math.random() * 100);
+		String toReturn = "";
+		if(isBetween(randomNum, 0, 40)){
+			toReturn = genPeopleActivity();
+		} else if(isBetween(randomNum, 41, 50)){
+			toReturn = genAmbush(TrevoScotLists.URBAN_SAFE_AMBUSH, TrevoScotLists.URBAN_SAFE_RUSE, TrevoScotLists.AMBUSH_STRATEGY);
+		} else if(isBetween(randomNum, 51, 60)){
+			toReturn = genDangerousAnimal();
+		} else if(isBetween(randomNum, 61, 70)){
+			toReturn = genHazard();
+		} else if(isBetween(randomNum, 71, 80)){
+			toReturn = genOfValue();
+		} else if(isBetween(randomNum, 81, 100)){
+			toReturn = genBenign(TrevoScotLists.URBAN_SAFE_BENIGN);
 		}
 		return toReturn;
 	}
@@ -31,28 +53,29 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 	 */
 	private String genPeopleActivity(){
 		Random rand = new Random();
-		int people = rand.nextInt(sPeople.size());
-		int activity = rand.nextInt(sActivities.size());
-		String person = sPeople.get(people);
-		String active = sActivities.get(activity);
+		int people = rand.nextInt(TrevoScotLists.PEOPLE.size());
+		int activity = rand.nextInt(TrevoScotLists.ACTIVITES.size());
+		String person = TrevoScotLists.PEOPLE.get(people);
+		String active = TrevoScotLists.ACTIVITES.get(activity);
 		if(person.equals("[Professional]")){
-			person = sProfessional.get(rand.nextInt(sProfessional.size()));
+			person = TrevoScotLists.PROFESSIONAL.get(rand.nextInt(TrevoScotLists.PROFESSIONAL.size()));
 		} else if(active.equals("[Working Class]")) {
-			person = sWorkingClass.get(rand.nextInt(sProfessional.size()));
+			person = TrevoScotLists.WORKING_CLASS.get(rand.nextInt(TrevoScotLists.PROFESSIONAL.size()));
 		}
-		return "Random People: " + sPeople.get(people) + " " + sActivities.get(activity);
+		return "Random People: " + TrevoScotLists.PEOPLE.get(people) + " " + TrevoScotLists.ACTIVITES.get(activity);
 	}
 	
 	/**
 	 * [Ambush] [Ruse] [Strategy]
 	 * @return
 	 */
-	private String genAmbush(){
+	private String genAmbush(ArrayList<String> pAmbush, ArrayList<String> pRuse, 
+			ArrayList<String> pStrategy){
 		Random rand = new Random();
-		int ambush = rand.nextInt(sAmbush.size());
-		int ruse = rand.nextInt(sRuse.size());
-		int strategy = rand.nextInt(sStrategy.size());
-		return "Ambush! " + sAmbush.get(ambush) + " " + sRuse.get(ruse) + " " + sStrategy.get(strategy);
+		int ambush = rand.nextInt(pAmbush.size());
+		int ruse = rand.nextInt(pRuse.size());
+		int strategy = rand.nextInt(pStrategy.size());
+		return "Ambush! " + pAmbush.get(ambush) + " " + pRuse.get(ruse) + " " + pStrategy.get(strategy);
 	}
 	
 	/**
@@ -61,8 +84,8 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 	 */
 	private String genDangerousAnimal(){
 		Random rand = new Random();
-		int animal = rand.nextInt(sAnimal.size());
-		return "Escaped Animal! " + sAnimal.get(animal);
+		int animal = rand.nextInt(TrevoScotLists.ANIMAL.size());
+		return "Escaped Animal! " + TrevoScotLists.ANIMAL.get(animal);
 	}
 	
 	/**
@@ -71,8 +94,8 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 	 */
 	private String genHazard(){
 		Random rand = new Random();
-		int hazard = rand.nextInt(sHazards.size());
-		return "Hazard: " + sHazards.get(hazard);
+		int hazard = rand.nextInt(TrevoScotLists.HAZARDS.size());
+		return "Hazard: " + TrevoScotLists.HAZARDS.get(hazard);
 	}
 	
 	/**
@@ -81,18 +104,18 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 	 */
 	private String genOfValue(){
 		Random rand = new Random();
-		int value = rand.nextInt(sLoot.size());
-		return "Random Loot: " + sLoot.get(value);
+		int value = rand.nextInt(TrevoScotLists.CIV_COUNTRYSIDE_LOOT.size());
+		return "Random Loot: " + TrevoScotLists.CIV_COUNTRYSIDE_LOOT.get(value);
 	}
 	
 	/**
 	 * [Benign]
 	 * @return
 	 */
-	private String genBenign(){
+	private String genBenign(ArrayList<String> pBenign){
 		Random rand = new Random();
-		int benign = rand.nextInt(sBenign.size());
-		return "Benign Event: " + sBenign.get(benign);
+		int benign = rand.nextInt(pBenign.size());
+		return "Benign Event: " + pBenign.get(benign);
 	}
 	
 	private boolean isBetween(int toCheck, int pLow, int pHigh) {
@@ -103,17 +126,4 @@ public class EncGenTrevorScot implements IEncounterGenerator{
 			return false;
 		}
 	}
-	
-	private static final ArrayList<String> sActivities = ReadFileUtil.getList("CivilizedCountrySide_Activity.txt");
-	private static final ArrayList<String> sAmbush = ReadFileUtil.getList("CivilizedCountrySide_Ambush.txt");
-	private static final ArrayList<String> sAnimal = ReadFileUtil.getList("CivilizedCountrySide_Animal.txt");
-	private static final ArrayList<String> sBenign = ReadFileUtil.getList("CivilizedCountrySide_Benign.txt");
-	private static final ArrayList<String> sHazards = ReadFileUtil.getList("CivilizedCountrySide_Hazards.txt");
-	private static final ArrayList<String> sLoot = ReadFileUtil.getList("CivilizedCountrySide_Loot.txt");
-	private static final ArrayList<String> sPeople = ReadFileUtil.getList("CivilizedCountrySide_People.txt");
-	private static final ArrayList<String> sProfessional = ReadFileUtil.getList("CivilizedCountrySide_Professional.txt");
-	private static final ArrayList<String> sRuse = ReadFileUtil.getList("CivilizedCountrySide_Ruse.txt");
-	private static final ArrayList<String> sStrategy = ReadFileUtil.getList("CivilizedCountrySide_Strategy.txt");
-	private static final ArrayList<String> sWorkingClass = ReadFileUtil.getList("CivilizedCountrySide_WorkingClass.txt");
-	
 }
