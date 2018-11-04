@@ -79,6 +79,11 @@ public class DnDGeneratorWindow {
 		frame.getContentPane().add(btnClearText);
 	}
 	
+	private void appendTextArea(JTextArea pTextArea, String pToAppend)
+	{
+		pTextArea.append(pToAppend + "\n");
+	}
+	
 	private void initTrevorScotButtons(JTextArea pEditorPane)
 	{
 		//Create encounter generators
@@ -109,7 +114,7 @@ public class DnDGeneratorWindow {
 		btnCountryside.setForeground(mDark);
 		btnCountryside.setBounds(10, 79, 128, 23);
 		btnCountryside.addActionListener(event -> {
-			pEditorPane.append(countrySideGen.generateCivilizedCountrySide() + "\n");
+			appendTextArea(pEditorPane, countrySideGen.generateCivilizedCountrySide());
 		});
 		trevorScotButtonContainer.add(btnCountryside);
 		//City: safe button
@@ -118,7 +123,7 @@ public class DnDGeneratorWindow {
 		btnCitySafe.setForeground(mDark);
 		btnCitySafe.setBounds(10, 45, 128, 23);
 		btnCitySafe.addActionListener(event->{
-			pEditorPane.append(countrySideGen.generateUrbanString() + "\n");
+			appendTextArea(pEditorPane, countrySideGen.generateUrbanString());
 		});
 		trevorScotButtonContainer.add(btnCitySafe);
 		//City rough button
