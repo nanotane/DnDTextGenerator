@@ -7,7 +7,7 @@ import nanotane.DnDGeneratorWindow.TrevorScot.TrevoScotLists;
 
 public class EncGenTrevorScot {
 	
-	public String generateCivilizedCountrySide()
+	public static String generateCivilizedCountrySide()
 	{
 		int randomNum = (int)(Math.random() * 100);
 		String toReturn = "";
@@ -27,7 +27,7 @@ public class EncGenTrevorScot {
 		return toReturn;
 	}
 	
-	public String generateUrbanString()
+	public static String generateUrbanString()
 	{
 		int randomNum = (int)(Math.random() * 100);
 		String toReturn = "";
@@ -51,7 +51,7 @@ public class EncGenTrevorScot {
 	 * [People][Activity]
 	 * @return
 	 */
-	private String genPeopleActivity(){
+	private static String genPeopleActivity(){
 		Random rand = new Random();
 		int people = rand.nextInt(TrevoScotLists.PEOPLE.size());
 		int activity = rand.nextInt(TrevoScotLists.ACTIVITES.size());
@@ -69,7 +69,7 @@ public class EncGenTrevorScot {
 	 * [Ambush] [Ruse] [Strategy]
 	 * @return
 	 */
-	private String genAmbush(ArrayList<String> pAmbush, ArrayList<String> pRuse, 
+	private static String genAmbush(ArrayList<String> pAmbush, ArrayList<String> pRuse, 
 			ArrayList<String> pStrategy){
 		Random rand = new Random();
 		int ambush = rand.nextInt(pAmbush.size());
@@ -82,7 +82,7 @@ public class EncGenTrevorScot {
 	 * Dangerous Animal] [Size]
 	 * @return
 	 */
-	private String genDangerousAnimal(){
+	private static String genDangerousAnimal(){
 		Random rand = new Random();
 		int animal = rand.nextInt(TrevoScotLists.ANIMAL.size());
 		return "Escaped Animal! " + TrevoScotLists.ANIMAL.get(animal);
@@ -92,7 +92,7 @@ public class EncGenTrevorScot {
 	 * [Hazard]
 	 * @return
 	 */
-	private String genHazard(){
+	private static String genHazard(){
 		Random rand = new Random();
 		int hazard = rand.nextInt(TrevoScotLists.HAZARDS.size());
 		return "Hazard: " + TrevoScotLists.HAZARDS.get(hazard);
@@ -102,7 +102,7 @@ public class EncGenTrevorScot {
 	 * [Of Value]
 	 * @return
 	 */
-	private String genOfValue(){
+	private static String genOfValue(){
 		Random rand = new Random();
 		int value = rand.nextInt(TrevoScotLists.CIV_COUNTRYSIDE_LOOT.size());
 		return "Random Loot: " + TrevoScotLists.CIV_COUNTRYSIDE_LOOT.get(value);
@@ -112,13 +112,13 @@ public class EncGenTrevorScot {
 	 * [Benign]
 	 * @return
 	 */
-	private String genBenign(ArrayList<String> pBenign){
+	private static String genBenign(ArrayList<String> pBenign){
 		Random rand = new Random();
 		int benign = rand.nextInt(pBenign.size());
 		return "Benign Event: " + pBenign.get(benign);
 	}
 	
-	private boolean isBetween(int toCheck, int pLow, int pHigh) {
+	private static boolean isBetween(int toCheck, int pLow, int pHigh) {
 		if(toCheck >= pLow && toCheck <= pHigh)
 		{
 			return true;

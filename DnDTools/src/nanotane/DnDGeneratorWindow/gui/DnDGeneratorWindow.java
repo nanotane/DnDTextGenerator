@@ -2,26 +2,44 @@ package nanotane.DnDGeneratorWindow.gui;
 
 import java.awt.EventQueue;
 
+
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+
+import javax.swing.UIManager;
+
 import nanotane.DnDGeneratorWindow.generators.EncGenTrevorScot;
+import nanotane.DnDGeneratorWindow.generators.TrinketGenerator;
+
 import javax.swing.JLabel;
 
+
+
 import java.awt.Font;
+
+
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DnDGeneratorWindow {
 
 	private JFrame frame;
 	private final Color mDark = new Color(34, 34, 34);
 	private final Color mLightGrey = new Color(125, 125, 125);
+	private final int mButtonWidth = 128;
+	private final int mButtonHeight = 23;
+	private final Color mButtonPurple = new Color(143, 59, 239);
 
 	/**
 	 * Launch the application.
@@ -50,7 +68,7 @@ public class DnDGeneratorWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-			
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 690, 462);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,10 +82,15 @@ public class DnDGeneratorWindow {
 		editorPane.setForeground(mLightGrey);
 		
 		JScrollPane scrollPane = new JScrollPane(editorPane);
+		scrollPane.getVerticalScrollBar().setBackground(mDark);
+		scrollPane.getVerticalScrollBar().setForeground(mLightGrey);
+		scrollPane.getHorizontalScrollBar().setBackground(mDark);
+		scrollPane.getHorizontalScrollBar().setForeground(mLightGrey);
 		scrollPane.setBounds(0, 0, 481, 423);
 		frame.getContentPane().add(scrollPane);
 		//Create trevo scot buttons
 		initTrevorScotButtons(editorPane);
+		initTrinketButtons(editorPane);
 		//Clear text button
 		JButton btnClearText = new JButton("Clear Text");
 		btnClearText.setForeground(new Color(255, 53, 49));
@@ -79,16 +102,29 @@ public class DnDGeneratorWindow {
 		frame.getContentPane().add(btnClearText);
 	}
 	
-	private void appendTextArea(JTextArea pTextArea, String pToAppend)
-	{
-		pTextArea.append(pToAppend + "\n");
+	private void initTrinketButtons(JTextArea pEditorPane) {
+		// TODO Auto-generated method stub
+		JButton trinketButton = new JButton("Trinkets");
+		trinketButton.setForeground(mButtonPurple);
+		trinketButton.setBackground(mDark);
+		trinketButton.addActionListener(event->{
+			appendTextArea(pEditorPane, TrinketGenerator.genTrinket());
+		});
+		trinketButton.setBounds(501, 190, mButtonWidth, mButtonHeight);
+		frame.getContentPane().add(trinketButton);
+		
+		JButton uniqueTrinketButton = new JButton("Unique Trinket");
+		uniqueTrinketButton.setForeground(mButtonPurple);
+		uniqueTrinketButton.setBackground(mDark);
+		uniqueTrinketButton.addActionListener(event ->{
+			appendTextArea(pEditorPane, TrinketGenerator.genUniqueTrinket());
+		});
+		uniqueTrinketButton.setBounds(501, 224, mButtonWidth, mButtonHeight);
+		frame.getContentPane().add(uniqueTrinketButton);
 	}
 	
 	private void initTrevorScotButtons(JTextArea pEditorPane)
 	{
-		//Create encounter generators
-		EncGenTrevorScot countrySideGen = new EncGenTrevorScot();
-		
 		JLabel trevorScotLabel = new JLabel("Trevor Scott Encounters");
 		trevorScotLabel.setForeground(mLightGrey);
 		trevorScotLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -104,32 +140,38 @@ public class DnDGeneratorWindow {
 				
 		//Espionage button
 		JButton btnEspionage = new JButton("Espionage");
-		btnEspionage.setBounds(10, 113, 128, 23);
+		btnEspionage.setBounds(10, 113, mButtonWidth, mButtonHeight);
 		btnEspionage.setEnabled(false);
 		btnEspionage.setForeground(mLightGrey);
 		trevorScotButtonContainer.add(btnEspionage);
 		//Countryside button
 		JButton btnCountryside = new JButton("Countryside");
-		btnCountryside.setBackground(new Color(255, 101, 47));
-		btnCountryside.setForeground(mDark);
-		btnCountryside.setBounds(10, 79, 128, 23);
+		btnCountryside.setForeground(new Color(255, 101, 47));
+		btnCountryside.setBackground(mDark);
+		btnCountryside.setBounds(10, 79, mButtonWidth, mButtonHeight);
 		btnCountryside.addActionListener(event -> {
-			appendTextArea(pEditorPane, countrySideGen.generateCivilizedCountrySide());
+			appendTextArea(pEditorPane, EncGenTrevorScot.generateCivilizedCountrySide());
 		});
 		trevorScotButtonContainer.add(btnCountryside);
 		//City: safe button
 		JButton btnCitySafe = new JButton("City: Safe");
-		btnCitySafe.setBackground(new Color(20, 228, 00));
-		btnCitySafe.setForeground(mDark);
-		btnCitySafe.setBounds(10, 45, 128, 23);
+		btnCitySafe.setForeground(new Color(20, 228, 00));
+		btnCitySafe.setBackground(mDark);
+		btnCitySafe.setBounds(10, 45, mButtonWidth, mButtonHeight);
 		btnCitySafe.addActionListener(event->{
-			appendTextArea(pEditorPane, countrySideGen.generateUrbanString());
+			appendTextArea(pEditorPane, EncGenTrevorScot.generateUrbanString());
 		});
 		trevorScotButtonContainer.add(btnCitySafe);
 		//City rough button
 		JButton btnCityRough = new JButton("City: Rough");
-		btnCityRough.setBounds(10, 11, 128, 23);
+		btnCityRough.setBounds(10, 11, mButtonWidth, mButtonHeight);
 		btnCityRough.setEnabled(false);
 		trevorScotButtonContainer.add(btnCityRough);
+	}
+	
+
+	private void appendTextArea(JTextArea pTextArea, String pToAppend)
+	{
+		pTextArea.append(pToAppend + "\n");
 	}
 }
