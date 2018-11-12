@@ -1,36 +1,22 @@
 package nanotane.DnDGeneratorWindow.gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.util.List;
 
-
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JButton;
-
-
-import javax.swing.UIManager;
-
-import nanotane.DnDGeneratorWindow.generators.EncGenTrevorScot;
-import nanotane.DnDGeneratorWindow.generators.TrinketGenerator;
-
-import javax.swing.JLabel;
-
-
-
-import java.awt.Font;
-
-
-
-import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-
-
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import nanotane.DnDGeneratorWindow.generators.CustomGenerator;
+import nanotane.DnDGeneratorWindow.generators.EncGenTrevorScot;
+import nanotane.DnDGeneratorWindow.generators.TrinketGenerator;
 
 public class DnDGeneratorWindow {
 
@@ -40,6 +26,7 @@ public class DnDGeneratorWindow {
 	private final int mButtonWidth = 128;
 	private final int mButtonHeight = 23;
 	private final Color mButtonPurple = new Color(143, 59, 239);
+	private final Color mLightBlue = new Color(44, 187, 244);
 
 	/**
 	 * Launch the application.
@@ -62,6 +49,7 @@ public class DnDGeneratorWindow {
 	 */
 	public DnDGeneratorWindow() {
 		initialize();
+		//TODO testing here
 	}
 
 	/**
@@ -100,6 +88,21 @@ public class DnDGeneratorWindow {
 			editorPane.setText("");
 		});
 		frame.getContentPane().add(btnClearText);
+		
+		//Load the files
+		CustomGenerator.loadFiles();
+		//Create the custom options area
+		JPanel customOptionsArea = new JPanel();
+		customOptionsArea.setBounds(501, 258, 128, 120);
+		customOptionsArea.setBackground(mDark);
+		customOptionsArea.setBorder(new LineBorder(mLightGrey));
+		customOptionsArea.setLayout(new GridLayout(0, 1));
+		//Get the buttons and pass in the action
+		List<JButton> buttons = CustomGenerator.getCustomButtons(mDark, mLightBlue, pString ->{
+			appendTextArea(editorPane, pString);
+		});
+		buttons.forEach(customOptionsArea::add);
+		frame.getContentPane().add(customOptionsArea);
 	}
 	
 	private void initTrinketButtons(JTextArea pEditorPane) {
